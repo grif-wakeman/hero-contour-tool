@@ -17,7 +17,7 @@ const SAMPLE_SONGS = [
     title: "Banana",
     artist: "Stony Pony",
     genre: "Jazz",
-    audioUrl: "/audio/Banana by Stony Pony.wav",
+    audioUrl: "./audio/Banana by Stony Pony.wav",
     albumArt: "./audio/banana.jpg",
     regions: [
       { id: "intro", label: "Intro", start: 0, end: 12.4, color: "rgba(96,165,250,0.25)" },
@@ -52,7 +52,7 @@ const SAMPLE_SONGS = [
     title: "Go Outside",
     artist: "Spin",
     genre: "Pop",
-    audioUrl: "/audio/Go Outside by Spin.wav",
+    audioUrl: "./audio/Go Outside by Spin.wav",
     albumArt: "./audio/go outside cover.jpg",
     regions: [
       { label: "S1", start: 8.4, end: 16.3, color: "rgba(96,165,250,0.25)", size: "large" },
@@ -75,7 +75,7 @@ const SAMPLE_SONGS = [
     artist: "Spin",
     genre: "Dance",
     genre2: ["Beats", "Electronic", "Pop", "Rock"],
-    audioUrl: "/audio/On The Moon by Spin.wav",
+    audioUrl: "./audio/On The Moon by Spin.wav",
     albumArt: "./audio/go outside cover.jpg",
     regions: [
       { label: "S1", start: 8.4, end: 16.3, color: "rgba(96,165,250,0.25)", size: "large" },
@@ -97,7 +97,7 @@ const SAMPLE_SONGS = [
     title: "Jet Set Static",
     artist: "Spin",
     genre: "Pop",
-    audioUrl: "/audio/Jet Set Static by Spin.wav",
+    audioUrl: "./audio/Jet Set Static by Spin.wav",
     albumArt: "./audio/go outside cover.jpg",
     regions: [
       { label: "S1", start: 8.4, end: 16.3, color: "rgba(96,165,250,0.25)", size: "large" },
@@ -119,7 +119,7 @@ const SAMPLE_SONGS = [
     title: "Tleilax",
     artist: "Graham Barton",
     genre: "Beats",
-    audioUrl: "/audio/Tleilax by Graham Barton.wav",
+    audioUrl: "./audio/Tleilax by Graham Barton.wav",
     albumArt: "./audio/tleilax cover.jpg",
     regions: [
       { label: "S1", start: 8.4, end: 16.3, color: "rgba(96,165,250,0.25)", size: "large" },
