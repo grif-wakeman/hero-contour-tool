@@ -30,8 +30,8 @@ const SAMPLE_SONGS = [
     title: "check it out",
     artist: "phoebemonster",
     genre: "Pop",
-    audioUrl: "./public/audio/check it out by phoebemonster.wav",
-    albumArt: "./public/audio/hit different by phoebemonster.jpg",
+    audioUrl: "./audio/check it out by phoebemonster.wav",
+    albumArt: "./audio/hit different by phoebemonster.jpg",
     regions: [
       { label: "S1", start: 8.4, end: 16.3, color: blue, size: "large" },
       { label: "UP", start: 16.3, end: 24.5, color: blue, size: "small" },
