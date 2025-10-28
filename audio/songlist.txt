@@ -1,0 +1,24 @@
+Ok. Oro “123Go”
+KrisSweden’s Mozart track, dunno what it’s called but she brought it to a call once
+Banana - Stony Pony
+Phoebe check it out
+Tleilax- Graham Barton
+All 3 spin tracks
+
+can you put my track "get up" on there? the one we used for the masterclass
+
+One of DTB’s orch tracks that ends with a nice rich piano chord button tail
+
+
+That we’ve been calling a “Chopin button” if that sounds familiar
+
+And 1 or 2 of Danette if they fit the Hero contour well
+
+As many SBA tracks as we can
+
+
+
+
+
+
+ffmpeg -i "Tleilax (Instrumental) by Graham Barton.aif" -c:a pcm_s16le -ar 48000 "Tleilax by Graham Barton.wav"
