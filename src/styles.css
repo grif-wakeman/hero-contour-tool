@@ -123,6 +123,7 @@ body {
 }
 
 /* buttons */
+
 .btn {
     padding: 10px 14px;
     border-radius: 12px;
@@ -184,6 +185,51 @@ body {
     background: rgba(0, 0, 0, .1);
 }
 
+#waveform {
+    background: transparent;
+    /* or your UI bg */
+    isolation: auto;
+    /* avoid isolate */
+    filter: none;
+    transform: none;
+    will-change: auto;
+}
+
+#waveform ::part(region) {
+    /* optional: use your wave bg color if you follow the maintainer’s tip */
+    background-color: transparent !important;
+
+    /* try screen/plus-lighter/soft-light too */
+}
+
+/* special: only the region we tag in JS will get this */
+#waveform ::part(region-tint) {
+    background-color: rgba(0, 160, 255, 0.35) !important;
+    /* your test tint */
+}
+
+#waveform ::part(regions-container) {
+    mix-blend-mode: multiply;
+    /* or screen/overlay/soft-light */
+    z-index: auto !important;
+    /* undo the isolated layer */
+    pointer-events: none;
+}
+
+#waveform ::part(progress) {
+    display: none !important;
+}
+
+#waveform ::part(canvases) {
+  clip-path: none !important;
+  -webkit-clip-path: none !important;
+}
+
+/* Hide the overlay progress layer entirely */
+#waveform ::part(progress) {
+  display: none !important;
+}
+
 /* region list */
 /* tighter grid for small, square chips */
 .region-grid {
@@ -192,7 +238,7 @@ body {
     /* was 220px */
     gap: 10px;
     /* a hair smaller than before */
-    margin-top: 16px;
+    margin-bottom: 20px;
 }
 
 /* square, centered, compact */
@@ -227,8 +273,8 @@ body {
 
 /* "large" spans twice as many columns (≈100px width) */
 .region.large {
-    grid-column: span 2;
-    aspect-ratio: 2 / 1;
+    grid-column: span 1;
+    aspect-ratio: 1 / 1;
 }
 
 /* "small" stays default (optional, for clarity) */
@@ -244,13 +290,23 @@ body {
     display: none;
 }
 
+.back-tip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+}
 
 /* tip */
 .tip {
     text-align: center;
     font-size: 12px;
     color: rgba(255, 255, 255, .5);
-    margin-top: 18px;
+}
+
+.ghost {
+    background-color: transparent;
+    border: transparent;
 }
 
 .loading-screen {
