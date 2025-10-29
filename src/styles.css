@@ -11,7 +11,8 @@ body,
 }
 
 body {
-    background: #1f1f1f;
+   
+    background: #0e0f10;
     color: #e9e9e9;
     font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
 }
@@ -128,13 +129,17 @@ body {
     padding: 10px 14px;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, .1);
-    background: rgba(0, 0, 0, .2);
-    color: #fff;
+    background: #272b30;
+    color: #eaeaea;
     cursor: pointer;
 }
 
 .btn:hover {
-    background: rgba(255, 255, 255, .06);
+    background: #2f343b;
+    box-shadow: 0 0 8px rgba(255,255,255,0.1);
+}
+.btn:active {
+    background: #1e2328;
 }
 
 /* ---- player view ---- */
@@ -142,6 +147,7 @@ body {
     width: 100%;
     max-width: none;
     margin: 0 auto;
+    
 }
 
 .player-bar {
@@ -162,7 +168,7 @@ body {
 .player-card {
     width: 100%;
     border: 1px solid rgba(255, 255, 255, .1);
-    background: rgba(0, 0, 0, .2);
+    background: #191b1f;
     border-radius: 16px;
     padding: 20px;
 }
@@ -179,14 +185,14 @@ body {
 /* waveform blocks */
 .wave {
     width: 100%;
-    border: 1px solid rgba(255, 255, 255, .1);
+    border: 1px solid rgba(255,255,255,0.1);
     border-radius: 14px;
     padding: 12px;
     background: rgba(0, 0, 0, .1);
 }
 
 #waveform {
-    background: transparent;
+    background: #23272d;
     /* or your UI bg */
     isolation: auto;
     /* avoid isolate */
@@ -202,11 +208,7 @@ body {
     /* try screen/plus-lighter/soft-light too */
 }
 
-/* special: only the region we tag in JS will get this */
-#waveform ::part(region-tint) {
-    background-color: rgba(0, 160, 255, 0.35) !important;
-    /* your test tint */
-}
+
 
 #waveform ::part(regions-container) {
     mix-blend-mode: multiply;

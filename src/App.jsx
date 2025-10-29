@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import "./styles.css";
 
-const blue = "#2176AE88";
-const yellow = "#FFD25A88";
-const red = "#eb4a5a88";
+const blue = "#3da9fc";
+const yellow = "#f8d23a";
+const red = "#ef476f";
 //const red = "#ef2b3f88";
 const green = "#619B8A88";
 const upArrow = "./public/arrow-big-up.png"
@@ -190,25 +190,25 @@ function WaveSurferWaveform({ audioRef, regions, height = 200, follow = false, o
         cursorColor: "#ffffff",
 
         renderFunction: (channels, ctx) => {
-  // detect if this draw call is for the progress layer
-  const part =
-    ctx?.canvas?.parentElement?.getAttribute?.("part") ||
-    ctx?.canvas?.closest?.("[part]")?.getAttribute?.("part") ||
-    "";
-  const isProgressLayer = part.includes("progress");
+          // detect if this draw call is for the progress layer
+          const part =
+            ctx?.canvas?.parentElement?.getAttribute?.("part") ||
+            ctx?.canvas?.closest?.("[part]")?.getAttribute?.("part") ||
+            "";
+          const isProgressLayer = part.includes("progress");
 
-  const { width, height } = ctx.canvas;
-  const dur = audio.duration || 1;
-  const tNow = audio.currentTime || 0;
-  const p = Math.max(0, Math.min(1, tNow / dur));
+          const { width, height } = ctx.canvas;
+          const dur = audio.duration || 1;
+          const tNow = audio.currentTime || 0;
+          const p = Math.max(0, Math.min(1, tNow / dur));
 
-  if (isProgressLayer) {
-    // optionally draw only the playhead line here, then bail
-    ctx.clearRect(0, 0, width, height);
-    ctx.fillStyle = "#fff";
-    ctx.fillRect(Math.floor(width * p), 0, 1, height);
-    return;
-  }
+          if (isProgressLayer) {
+            // optionally draw only the playhead line here, then bail
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = "#fff";
+            ctx.fillRect(Math.floor(width * p), 0, 1, height);
+            return;
+          }
 
           // --- BASE CANVAS DRAW ---
           ctx.clearRect(0, 0, width, height);
@@ -217,7 +217,7 @@ function WaveSurferWaveform({ audioRef, regions, height = 200, follow = false, o
           const peaks = channels[0];
           const barW = 2, gap = 1;
           const step = (peaks.length / width) * (barW + gap); // even sampling
-          ctx.fillStyle = "#8a8a8a";
+          ctx.fillStyle = "#c1c1c1";
 
           for (let x = 0, i = 0; x < width; x += (barW + gap), i += step) {
             const idx = Math.max(0, Math.min(peaks.length - 1, Math.floor(i)));
@@ -247,7 +247,7 @@ function WaveSurferWaveform({ audioRef, regions, height = 200, follow = false, o
           ctx.fillRect(0, 0, width * p, height);
           ctx.restore();
 
-          
+
         },
 
       });
