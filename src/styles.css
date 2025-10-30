@@ -11,9 +11,9 @@ body,
 }
 
 body {
-   
-    background: #0e0f10;
-    color: #e9e9e9;
+
+    background: #1B1C1E;
+    color: #fff;
     font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
 }
 
@@ -48,6 +48,10 @@ body {
     margin-top: 6px;
     color: rgba(255, 255, 255, .6);
     font-size: 14px;
+}
+
+.title-sm {
+    color: #F3F3F3;
 }
 
 /* search / filters */
@@ -91,20 +95,96 @@ body {
 }
 
 .card {
+    padding: 10px;
+    background-color: black;
+    /* soften the edge slightly */
+    border: 1px solid rgba(255, 255, 255, 0.03);
+
+}
+
+.card-inset {
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 10px;
-    border: 1px solid rgba(255, 255, 255, .1);
-    background: #191919;
-    border-radius: 16px;
+    /* border-radius: 8px;
+
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.02),
+        inset 0 2px 4px rgba(0, 0, 0, 0.35),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.02); */
 }
 
-.card-img-container {
+.grid .card {
+    position: relative;
+    /* not for pseudo; keeps transforms clean */
+    background: #252527;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    /* base depth */
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.40),
+        0 6px 12px rgba(0, 0, 0, 0.35),
+        /* inner micro-edges (make content feel inset/anchored) */
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.45);
+    transition: box-shadow 150ms ease, transform 150ms ease;
+}
+
+.grid .card:hover {
+    background-color: #343436;
+    transform: translateY(-3px);
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.45),
+        0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+
+
+/* .card-img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
     margin: 0;
     padding: 0;
     height: 100px;
     width: 100px;
+
+} */
+
+.card-img-container {
+    height: 100px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background: #2A2A2C;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.45),
+        0 4px 10px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    /* rounds the image corners */
+}
+
+.card-img-container img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translateZ(0);
+    transition: transform 140ms ease, filter 140ms ease;
+}
+
+.card-image-container:hover img {
+    transform: scale(1.02);
+    filter: contrast(1.05) brightness(0.98);
+    /* subtle, no color */
 }
 
 .card-song {
@@ -115,12 +195,16 @@ body {
     margin: 0 0 4px;
     font-size: 18px;
     font-weight: 600;
+    filter: drop-shadow(0 1px 0 rgba(0,0,0,0.45));
 }
+
+
 
 .card p {
     margin: 0;
     font-size: 13px;
     color: rgba(255, 255, 255, .7);
+    filter: drop-shadow(0 1px 0 rgba(0,0,0,0.45));
 }
 
 /* buttons */
@@ -129,17 +213,18 @@ body {
     padding: 10px 14px;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, .1);
-    background: #272b30;
-    color: #eaeaea;
+    background: #F3F3F3;
+    color: #1C1C1E;
     cursor: pointer;
 }
 
 .btn:hover {
-    background: #2f343b;
-    box-shadow: 0 0 8px rgba(255,255,255,0.1);
+    background: #E6E6E6;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
 }
+
 .btn:active {
-    background: #1e2328;
+    background: #CFCFCF;
 }
 
 /* ---- player view ---- */
@@ -147,7 +232,7 @@ body {
     width: 100%;
     max-width: none;
     margin: 0 auto;
-    
+
 }
 
 .player-bar {
@@ -167,10 +252,46 @@ body {
 
 .player-card {
     width: 100%;
-    border: 1px solid rgba(255, 255, 255, .1);
-    background: #191b1f;
-    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.05), inset 0 -2px 6px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    background: #232426;
+    border-radius: 12px;
     padding: 20px;
+}
+
+.player h2 {
+    color: #F3F3F3;
+}
+
+.playBtn {
+    background-color: #F2F2F2;
+    color: #1C1C1E;
+}
+
+.playBtn:hover {
+    background-color: #E7E7E7;
+    color: #1C1C1E;
+}
+
+.playBtn:active {
+    background-color: #D5D5D5;
+    color: #1C1C1E;
+}
+
+.backBtn {
+    background-color: #2A2A2C;
+    color: #F3F3F3;
+}
+
+.backBtn:hover {
+    background-color: #333335;
+    color: #fff;
+}
+
+.backBtn:active {
+    background-color: #1F1F20;
+    color: #fff;
 }
 
 .time-transport {
@@ -185,14 +306,28 @@ body {
 /* waveform blocks */
 .wave {
     width: 100%;
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 14px;
+    border-radius: 8px;
     padding: 12px;
-    background: rgba(0, 0, 0, .1);
+
+    /* soften the edge slightly */
+    border: 1px solid rgba(255, 255, 255, 0.03);
+
+    /* balanced, smoother inset */
+    box-shadow:
+        /* subtle inner ring to reduce “hard edge” */
+        inset 0 0 0 1px rgba(255, 255, 255, 0.02),
+
+        /* symmetric top & bottom lips (same offset/blur/alpha) */
+        inset 0 2px 4px rgba(0, 0, 0, 0.35),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.35),
+
+        /* tiny inner highlights to keep the recess readable, but not sharp */
+        inset 0 1px 0 rgba(255, 255, 255, 0.025),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.02);
 }
 
 #waveform {
-    background: #23272d;
+    background: #202123;
     /* or your UI bg */
     isolation: auto;
     /* avoid isolate */
@@ -223,13 +358,13 @@ body {
 }
 
 #waveform ::part(canvases) {
-  clip-path: none !important;
-  -webkit-clip-path: none !important;
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
 }
 
 /* Hide the overlay progress layer entirely */
 #waveform ::part(progress) {
-  display: none !important;
+    display: none !important;
 }
 
 /* region list */
@@ -255,10 +390,30 @@ body {
     text-align: center;
     border-radius: 12px;
     /* slightly smaller radius */
-    border: 1px solid rgba(255, 255, 255, .1);
-    background: rgba(0, 0, 0, .3);
     overflow: hidden;
     /* clip long labels */
+    background: #303032;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--section-color);
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.55),
+        /* tight base shadow */
+        0 6px 12px rgba(0, 0, 0, 0.45),
+        /* mid falloff */
+        0 12px 24px rgba(0, 0, 0, 0.25);
+    /* soft outer diffusion */
+    transition: background 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+    text-shadow: 0px 0px 5px black;
+    /* 2px wide blue stroke */
+}
+
+.region:hover {
+    background-color: #343436;
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.6),
+        0 10px 20px rgba(0, 0, 0, 0.45),
+        0 16px 32px rgba(0, 0, 0, 0.35);
+    transform: translateY(-2px);
 }
 
 /* allow variable column spans */
@@ -327,10 +482,29 @@ body {
     align-items: center;
     gap: 14px;
     padding: 10px;
-    border: 1px solid rgba(255, 255, 255, .1);
-    background: #191919;
-    border-radius: 16px;
+    background: #232426;
+    border-radius: 12px;
+    background: #303032;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: #fff;
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.55),
+        /* tight base shadow */
+        0 6px 12px rgba(0, 0, 0, 0.45),
+        /* mid falloff */
+        0 12px 24px rgba(0, 0, 0, 0.25);
+    /* soft outer diffusion */
+    transition: background 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+    text-shadow: 0px 0px 5px black;
+    /* 2px wide blue stroke */
 }
+
+.loading-card {
+    object-fit: cover;
+    transform: translateZ(0);
+    transition: transform 140ms ease, filter 140ms ease;
+}
+
 
 .loading-card img {
     height: 100px;

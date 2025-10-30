@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import "./styles.css";
 
-const blue = "#3da9fc";
-const yellow = "#f8d23a";
-const red = "#ef476f";
+const blue = "#4B95E0";
+const yellow = "#E9C15A";
+const red = "#E46C80";
 //const red = "#ef2b3f88";
-const green = "#619B8A88";
+const green = "#4EBEA9";
 const upArrow = "./public/arrow-big-up.png"
 const downArrow = "./public/arrow-big-down.png"
 const downArrowImg = document.getElementById("downArrow");
@@ -215,7 +215,7 @@ function WaveSurferWaveform({ audioRef, regions, height = 200, follow = false, o
 
           // 1) Base waveform (bars)
           const peaks = channels[0];
-          const barW = 2, gap = 1;
+          const barW = 3, gap = 1;
           const step = (peaks.length / width) * (barW + gap); // even sampling
           ctx.fillStyle = "#c1c1c1";
 
@@ -349,7 +349,7 @@ function TransportButtons({ audioRef, time, dur }) {
   return (
     <div style={{ display: "flex", gap: 12 }}>
       <button
-        className="btn"
+        className="btn playBtn"
         onClick={togglePlay}
         aria-pressed={isPlaying}
         aria-label={isPlaying ? "Pause" : "Play"}
@@ -402,10 +402,10 @@ function TransportButtons({ audioRef, time, dur }) {
 function RegionLabel({ label }) {
   const l = String(label).toLowerCase();
   if (label === "↑" || l === "up") {
-    return <TbArrowBigUp aria-label="Up" />;
+    return <TbArrowBigUp aria-label="Up" style={{ filter: "drop-shadow(0px 0px 3px black)" }} />;
   }
   if (label === "↓" || l === "down") {
-    return <TbArrowBigDown aria-label="Down" />;
+    return <TbArrowBigDown aria-label="Down" style={{ filter: "drop-shadow(0px 0px 3px black)" }} />;
   }
   return <>{label}</>;
 }
@@ -470,7 +470,7 @@ function Player({ song, onBack, onReady }) {
         </div>
 
         <h2 style={{ margin: 0, fontSize: 24, fontWeight: 600 }}>{song.title}</h2>
-        <div style={{ color: "rgba(255,255,255,.7)" }}>{song.artist}</div>
+        <div style={{ color: "#B8B8B9" }}>{song.artist}</div>
         <span className="pill">{song.genre}</span>
         <div className="time-genre" style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 12 }}>
 
@@ -501,6 +501,7 @@ function Player({ song, onBack, onReady }) {
             <div className="region-grid">
               {song.regions.map((r, idx) => (
                 <button
+                  style={{ border: `1px solid ${r.color}`, color: r.color }}
                   key={r.id ?? `${song.id}-r-${idx}`}
                   className={`region ${r.size || ""}`}
                   onClick={async () => {
@@ -514,7 +515,7 @@ function Player({ song, onBack, onReady }) {
                     }
                   }}
                 >
-                  <div className="name" style={{ color: r.color.replace("88", "") }}>
+                  <div className="name">
                     <RegionLabel label={r.label} />
                   </div>
                 </button>
@@ -577,16 +578,16 @@ function Browser({ songs, onSelect }) {
         <div className="grid">
           {filtered.map(s => (
             <button key={s.id} className="card" onClick={() => onSelect(s)}>
-              <div className="card-img-container">
-                <img src={s.albumArt} alt="" height={"100px"} width={"100px"} style={{ borderRadius: "8px" }} />
+              <div className="card-inset">
+                <div className="card-img-container">
+                  <img src={s.albumArt} alt="" height={"100px"} width={"100px"} />
+                </div>
+                <div style={{ display: "grid", minWidth: 0, flex: 1, textAlign: "left" }}>
+                  <h4 className="title-sm">{s.title}</h4>
+                  <p>{s.artist}</p>
+                </div>
               </div>
-              <div style={{ display: "grid", minWidth: 0, flex: 1, textAlign: "left" }}>
-                <h4 className="title-sm">{s.title}</h4>
-                <p>{s.artist}</p>
-                {/*                 <p style={{ fontSize: 12, color: "rgba(255,255,255,.6)" }}><em>{s.genre}</em></p>
- */}              </div>
-              {/*               <audio src={s.audioUrl} preload="none" controls style={{ maxWidth: 190 }} />
- */}            </button>
+            </button>
           ))}
         </div>
       </section>
