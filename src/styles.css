@@ -195,7 +195,7 @@ body {
     margin: 0 0 4px;
     font-size: 18px;
     font-weight: 600;
-    filter: drop-shadow(0 1px 0 rgba(0,0,0,0.45));
+    filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.45));
 }
 
 
@@ -204,7 +204,7 @@ body {
     margin: 0;
     font-size: 13px;
     color: rgba(255, 255, 255, .7);
-    filter: drop-shadow(0 1px 0 rgba(0,0,0,0.45));
+    filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.45));
 }
 
 /* buttons */
@@ -367,6 +367,10 @@ body {
     display: none !important;
 }
 
+#waveform ::part(cursor) {
+    box-shadow: 1px 0px 3px black;
+}
+
 /* region list */
 /* tighter grid for small, square chips */
 .region-grid {
@@ -415,6 +419,15 @@ body {
         0 16px 32px rgba(0, 0, 0, 0.35);
     transform: translateY(-2px);
 }
+
+.region.active {
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.6),
+        0 10px 20px rgba(0, 0, 0, 0.45),
+        0 16px 32px rgba(0, 0, 0, 0.35);
+    transform: translateY(-2px);
+}
+
 
 /* allow variable column spans */
 .region-grid {

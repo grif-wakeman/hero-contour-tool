@@ -6,6 +6,7 @@ const yellow = "#E9C15A";
 const red = "#E46C80";
 //const red = "#ef2b3f88";
 const green = "#4EBEA9";
+const grey = "#b9b8b8ff"
 const upArrow = "./public/arrow-big-up.png"
 const downArrow = "./public/arrow-big-down.png"
 const downArrowImg = document.getElementById("downArrow");
@@ -33,12 +34,15 @@ const SAMPLE_SONGS = [
     audioUrl: "./audio/check it out by phoebemonster.wav",
     albumArt: "./audio/hit different by phoebemonster.jpg",
     regions: [
+      { label: "···", start: 0.0, end: 8.4, color: grey, size: "large" },
       { label: "S1", start: 8.4, end: 16.3, color: blue, size: "large" },
       { label: "↑", start: 16.3, end: 24.5, color: blue, size: "small" },
       { label: "B1", start: 24.5, end: 38.5, color: yellow, size: "large" },
       { label: "↓", start: 38.5, end: 39.5, color: green, size: "small" },
       { label: "W", start: 39.5, end: 40.5, color: green, size: "small" },
+      { label: "···", start: 40.5, end: 48.5, color: grey, size: "large" },
       { label: "A1", start: 48.5, end: 72.5, color: red, size: "large" },
+      { label: "···", start: 72.5, end: 84.4, color: grey, size: "large" },
       { label: "S2", start: 84.4, end: 92.3, color: blue, size: "large" },
       { label: "↑", start: 92.3, end: 100.5, color: blue, size: "small" },
       { label: "B2", start: 100.5, end: 114.5, color: yellow, size: "large" },
@@ -154,6 +158,44 @@ function makeSolid(c) {
   return c;
 }
 
+function parseToRgb(c) {
+  if (!c) return null;
+  if (c.startsWith("#")) {
+    const hex = c.replace("#", "");
+    const bigint = parseInt(hex.length === 3
+      ? hex.split("").map(ch => ch + ch).join("")
+      : hex, 16);
+    const r = (bigint >> 16) & 255;
+    const g = (bigint >> 8) & 255;
+    const b = bigint & 255;
+    return [r, g, b];
+  }
+  // rgb/rgba( r, g, b [, a] )
+  if (c.startsWith("rgb")) {
+    const parts = c.slice(c.indexOf("(") + 1, c.indexOf(")"))
+      .split(",")
+      .map(s => s.trim());
+    if (parts.length >= 3) {
+      return [Number(parts[0]), Number(parts[1]), Number(parts[2])];
+    }
+  }
+  return null;
+}
+
+function contrastTextColor(bg) {
+  // fall back to white
+  const rgb = parseToRgb(bg) || [255, 255, 255];
+  // WCAG relative luminance
+  const [r, g, b] = rgb.map(v => {
+    v /= 255;
+    return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+  });
+  const L = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  // threshold ~0.5 gives good legibility on saturated fills
+  return L > 0.5 ? "#111" : "#fff";
+}
+
+
 /* ---------- waveform (WaveSurfer) ---------- */
 function WaveSurferWaveform({ audioRef, regions, height = 200, follow = false, onReady }) {
   // keep stable refs OUTSIDE effects
@@ -188,6 +230,7 @@ function WaveSurferWaveform({ audioRef, regions, height = 200, follow = false, o
         fillParent: true,
         progressColor: "transparent",
         cursorColor: "#ffffff",
+        cursorWidth: 3,
 
         renderFunction: (channels, ctx) => {
           // detect if this draw call is for the progress layer
@@ -416,6 +459,15 @@ function Player({ song, onBack, onReady }) {
   const [time, setTime] = useState(0);
   const [dur, setDur] = useState(0);
 
+  const activeRegionIndex = React.useMemo(() => {
+    const t = time || 0;
+    const list = song?.regions || [];
+    // first region where start <= t < end
+    const idx = list.findIndex(r => t >= r.start && t < r.end);
+    return idx; // -1 if none
+  }, [time, song?.regions]);
+
+
   // NEW: overlay state
   const [waveReady, setWaveReady] = useState(false);
 
@@ -501,15 +553,20 @@ function Player({ song, onBack, onReady }) {
             <div className="region-grid">
               {song.regions.map((r, idx) => (
                 <button
-                  style={{ border: `1px solid ${r.color}`, color: r.color }}
                   key={r.id ?? `${song.id}-r-${idx}`}
-                  className={`region ${r.size || ""}`}
+                  className={`region ${r.size || ""} ${idx === activeRegionIndex ? "active" : ""}`}
+                  style={{
+                    border: `1px solid ${r.color}`,
+                    background: idx === activeRegionIndex ? makeSolid(r.color) : "transparent",
+                    color: idx === activeRegionIndex ? "#fff" : r.color,
+                    transition: "background 120ms linear, color 120ms linear",
+                  }}
                   onClick={async () => {
                     const a = audioRef.current;
                     if (!a) return;
                     try {
-                      a.currentTime = r.start;              // seek to region start
-                      await a.play();                       // then play
+                      a.currentTime = r.start;
+                      await a.play();
                     } catch (err) {
                       console.error("Region play() failed:", err);
                     }
@@ -519,6 +576,8 @@ function Player({ song, onBack, onReady }) {
                     <RegionLabel label={r.label} />
                   </div>
                 </button>
+
+
               ))}
             </div>
           )
