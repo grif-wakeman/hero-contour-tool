@@ -1,11 +1,19 @@
 import React, { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import "./styles.css";
 
-const blue = "#4B95E0";
-const yellow = "#E9C15A";
-const red = "#E46C80";
-//const red = "#ef2b3f88";
-const green = "#4EBEA9";
+
+const blue = "#3B81E3";
+const lightblue = "#5E98E8";
+const yellow = "#DAA044";
+const lightyellow = "#E1B266";
+const red = "#C75A57";
+const lightred = "#D17875";
+const green = "#4ED063";
+const lightgreen = "#6ED880";
+const purple = "#8B5BC2";
+const lightpurple = "#A079CD";
+const orange = "#E37C39";
+const lightorange = "#FF9950";
 const grey = "#b9b8b8ff"
 const upArrow = "./public/arrow-big-up.png"
 const downArrow = "./public/arrow-big-down.png"
@@ -138,6 +146,33 @@ const SAMPLE_SONGS = [
       { label: "↓", start: 114.5, end: 39.5, color: "rgba(96,165,250,0.25)", size: "small" },
       { label: "W", start: 115.6, end: 40.5, color: "rgba(96,165,250,0.25)", size: "small" },
       { label: "A2", start: 116.5, end: 72.5, color: "rgba(34,197,94,0.25)", size: "large" }
+    ],
+  },
+  {
+    id: "gotta-be-me",
+    title: "Gotta Be Me",
+    artist: "1 Luv",
+    genre: "Beats",
+    audioUrl: "./audio/Gotta Be Me by 1 Luv.wav",
+    albumArt: "./audio/tleilax cover.jpg",
+    regions: [
+      { label: "···", start: 0, end: 2.3, color: grey, size: "large" },
+      { label: "S1", start: 2.3, end: 11.7, color: blue, size: "large" },
+      { label: "↑", start: 11.7, end: 21.2, color: lightblue, size: "small" },
+      { label: "B1", start: 21.2, end: 28.1, color: yellow, size: "large" },
+      { label: "↓", start: 28.1, end: 29.4, color: green, size: "small" },
+      { label: "W", start: 29.4, end: 30.5, color: purple, size: "small" },
+      { label: "A1", start: 30.5, end: 49.5, color: red, size: "large" },
+      { label: "···", start: 49.5, end: 51.7, color: grey, size: "large" },
+      { label: "S2", start: 51.7, end: 61.0, color: blue, size: "large" },
+      { label: "↑", start: 61.0, end: 70.8, color: lightblue, size: "small" },
+      { label: "B2", start: 70.8, end: 77.7, color: yellow, size: "large" },
+      { label: "↓", start: 77.7, end: 78.8, color: green, size: "small" },
+      { label: "W", start: 78.8, end: 80, color: purple, size: "small" },
+      { label: "A2", start: 80, end: 96.5, color: red, size: "large" },
+      { label: "↓", start: 96.5, end: 97.6, color: green, size: "small" },
+      { label: "W", start: 97.6, end: 98.8, color: purple, size: "small" },
+      { label: "↑", start: 98.8, end: 117.5, color: lightred, size: "small" },
     ],
   }
 ];
