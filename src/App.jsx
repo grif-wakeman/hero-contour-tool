@@ -2,18 +2,18 @@ import React, { useEffect, useMemo, useRef, useState, useCallback } from "react"
 import "./styles.css";
 
 
-const blue = "#3B81E3";
-const lightblue = "#5E98E8";
-const yellow = "#DAA044";
-const lightyellow = "#E1B266";
-const red = "#C75A57";
-const lightred = "#D17875";
+const blueUp = "#3B81E3";
+const blue = "#5E98E8";
+const yellowUp = "#DAA044";
+const yellow = "#E1B266";
+const redUp = "#C75A57";
+const red = "#D17875";
 const green = "#4ED063";
 const lightgreen = "#6ED880";
 const purple = "#8B5BC2";
 const lightpurple = "#A079CD";
-const orange = "#E37C39";
-const lightorange = "#FF9950";
+const orangeUp = "#E37C39";
+const orange = "#FF9950";
 const grey = "#b9b8b8ff"
 const upArrow = "./public/arrow-big-up.png"
 const downArrow = "./public/arrow-big-down.png"
@@ -158,21 +158,21 @@ const SAMPLE_SONGS = [
     regions: [
       { label: "···", start: 0, end: 2.3, color: grey, size: "large" },
       { label: "S1", start: 2.3, end: 11.7, color: blue, size: "large" },
-      { label: "↑", start: 11.7, end: 21.2, color: lightblue, size: "small" },
+      { label: "↑", start: 11.7, end: 21.2, color: blueUp, size: "small" },
       { label: "B1", start: 21.2, end: 28.1, color: yellow, size: "large" },
       { label: "↓", start: 28.1, end: 29.4, color: green, size: "small" },
       { label: "W", start: 29.4, end: 30.5, color: purple, size: "small" },
       { label: "A1", start: 30.5, end: 49.5, color: red, size: "large" },
       { label: "···", start: 49.5, end: 51.7, color: grey, size: "large" },
       { label: "S2", start: 51.7, end: 61.0, color: blue, size: "large" },
-      { label: "↑", start: 61.0, end: 70.8, color: lightblue, size: "small" },
+      { label: "↑", start: 61.0, end: 70.8, color: blueUp, size: "small" },
       { label: "B2", start: 70.8, end: 77.7, color: yellow, size: "large" },
       { label: "↓", start: 77.7, end: 78.8, color: green, size: "small" },
       { label: "W", start: 78.8, end: 80, color: purple, size: "small" },
       { label: "A2", start: 80, end: 96.5, color: red, size: "large" },
       { label: "↓", start: 96.5, end: 97.6, color: green, size: "small" },
       { label: "W", start: 97.6, end: 98.8, color: purple, size: "small" },
-      { label: "↑", start: 98.8, end: 117.5, color: lightred, size: "small" },
+      { label: "↑", start: 98.8, end: 117.5, color: redUp, size: "small" },
     ],
   },
   {
@@ -185,12 +185,12 @@ const SAMPLE_SONGS = [
     regions: [
       { label: "···", start: 0, end: 5.5, color: grey, size: "large" },
       { label: "S1", start: 5.6, end: 17.2, color: blue, size: "large" },
-      { label: "↑", start: 17.2, end: 25.5, color: lightblue, size: "small" },
+      { label: "↑", start: 17.2, end: 25.5, color: blueUp, size: "small" },
       { label: "↓", start: 25.5, end: 28.2, color: green, size: "small" },
       { label: "B1", start: 28.2, end: 37.9, color: yellow, size: "large" },
       { label: "↓", start: 37.9, end: 39.2, color: green, size: "small" },
       { label: "A1", start: 39.2, end: 50.1, color: red, size: "large" },
-      { label: "↑", start: 50.1, end: 61.3, color: lightred, size: "small" },
+      { label: "↑", start: 50.1, end: 61.3, color: redUp, size: "small" },
       { label: "···", start: 61.3, end: 66.5, color: grey, size: "large" },
       { label: "S2", start: 66.5, end: 74.5, color: blue, size: "large" },
       { label: "↓", start: 74.5, end: 76.3, color: green, size: "small" },
@@ -198,12 +198,12 @@ const SAMPLE_SONGS = [
       { label: "B2", start: 77.5, end: 87.3, color: yellow, size: "large" },
       { label: "↓", start: 87.3, end: 88.5, color: green, size: "small" },
       { label: "A2", start: 88.5, end: 99.5, color: red, size: "large" },
-      { label: "↑", start: 99.5, end: 108.9, color: lightred, size: "small" },
+      { label: "↑", start: 99.5, end: 108.9, color: redUp, size: "small" },
       { label: "↓", start: 108.9, end: 110.5, color: green, size: "small" },
       { label: "B3", start: 110.5, end: 126.9, color: yellow, size: "large" },
       { label: "↓", start: 126.9, end: 129.9, color: green, size: "small" },
       { label: "A3", start: 129.9, end: 146, color: red, size: "large" },
-      { label: "↑", start: 146, end: 150, color: lightred, size: "small" },
+      { label: "↑", start: 146, end: 150, color: redUp, size: "small" },
       { label: "↓", start: 150, end: 154, color: green, size: "small" },
     ],
   },
@@ -229,6 +229,89 @@ const SAMPLE_SONGS = [
       { label: "B3", start: 104.3, end: 121.3, color: yellow, size: "large" },
       { label: "↓", start: 121.3, end: 124.6, color: green, size: "small" },
       { label: "A3", start: 124.6, end: 152, color: red, size: "large" },
+    ],
+  },
+  {
+    id: "glitter-in-a-holorgram",
+    title: "Glitter in a Hologram",
+    artist: "Vivi Holo",
+    genre: "Hyperpop",
+    audioUrl: "./audio/Glitter in a Hologram by Vivi Holo.wav",
+    albumArt: "./audio/Glitter in a Hologram by Vivi Holo.png",
+    regions: [
+      { label: "W", start: 0.5, end: 2.3, color: purple, size: "small" },
+      { label: "···", start: 2.3, end: 8.5, color: grey, size: "large" },
+      { label: "S1", start: 8.5, end: 16, color: blue, size: "large" },
+      { label: "↑", start: 16, end: 23.2, color: blueUp, size: "small" },
+      { label: "B1", start: 23.2, end: 37.6, color: yellow, size: "large" },
+      { label: "↓", start: 37.6, end: 39.4, color: green, size: "small" },
+      { label: "A1", start: 39.4, end: 53.7, color: red, size: "large" },
+      { label: "↑", start: 53.7, end: 67.9, color: redUp, size: "small" },
+      { label: "S2", start: 67.9, end: 75.1, color: blue, size: "large" },
+      { label: "B2", start: 75.1, end: 89.5, color: yellow, size: "large" },
+      { label: "↓", start: 89.5, end: 91.3, color: green, size: "small" },
+      { label: "A2", start: 91.3, end: 105.6, color: red, size: "large" },
+      { label: "↑", start: 105.6, end: 119, color: redUp, size: "small" },
+      { label: "W", start: 119, end: 120, color: purple, size: "small" },
+      { label: "B3", start: 120, end: 134.3, color: yellowUp, size: "large" },
+      { label: "↓", start: 134.3, end: 135.2, color: green, size: "small" },
+      { label: "A3", start: 135.2, end: 154, color: redUp, size: "large" },
+
+    ],
+  },
+  {
+    id: "python-piggyback",
+    title: "Python Piggyback",
+    artist: "GritViper",
+    genre: "DnB",
+    audioUrl: "./audio/Python Piggyback by GritViper.wav",
+    albumArt: "./audio/Python Piggyback by GritViper.png",
+    regions: [
+      { label: "···", start: 0, end: 5.3, color: grey, size: "large" },
+      { label: "S1", start: 5.3, end: 16, color: blue, size: "large" },
+      { label: "↑", start: 16, end: 26.8, color: blueUp, size: "small" },
+      { label: "B1", start: 26.8, end: 37.5, color: yellow, size: "large" },
+      { label: "A1", start: 37.5, end: 48.2, color: red, size: "large" },
+      { label: "↑", start: 48.2, end: 58.9, color: redUp, size: "small" },
+      { label: "···", start: 58.9, end: 69.7, color: grey, size: "large" },
+      { label: "S2", start: 69.7, end: 80.5, color: blue, size: "large" },
+      { label: "↑", start: 80.5, end: 91.1, color: blueUp, size: "small" },
+      { label: "B2", start: 91.1, end: 101.9, color: yellowUp, size: "large" },
+      { label: "↓", start: 101.9, end: 103.2, color: green, size: "small" },
+      { label: "A2", start: 103.2, end: 113.9, color: red, size: "large" },
+      { label: "↑", start: 113.9, end: 124.5, color: redUp, size: "small" },
+      { label: "↓", start: 124.5, end: 128, color: green, size: "small" },
+    ],
+  },
+  {
+    id: "pop-lock-boom",
+    title: "Pop Lock Boom",
+    artist: "ACE FAYE",
+    genre: "Pop",
+    audioUrl: "./audio/Pop Lock Boom by ACE FAYE.wav",
+    albumArt: "./audio/Pop Lock Boom by ACE FAYE.JPG",
+    regions: [
+      { label: "···", start: 0, end: 4.1, color: grey, size: "large" },
+      { label: "W", start: 4.1, end: 4.7, color: purple, size: "small" },
+      { label: "S1", start: 4.7, end: 12.5, color: blue, size: "large" },
+      { label: "↑", start: 12.5, end: 20.8, color: blueUp, size: "small" },
+      { label: "B1", start: 20.8, end: 34.9, color: yellow, size: "large" },
+      { label: "↓", start: 34.9, end: 36.6, color: green, size: "small" },
+      { label: "W", start: 36.6, end: 37, color: purple, size: "small" },
+      { label: "A1", start: 37, end: 46.2, color: red, size: "large" },
+      { label: "↑", start: 46.2, end: 56.5, color: redUp, size: "small" },
+      { label: "S2", start: 56.5, end: 64.3, color: blue, size: "large" },
+      { label: "↑", start: 64.3, end: 72.6, color: blueUp, size: "small" },
+      { label: "B2", start: 72.6, end: 86.9, color: yellow, size: "large" },
+      { label: "↓", start: 86.9, end: 88.4, color: green, size: "small" },
+      { label: "W", start: 88.4, end: 88.9, color: purple, size: "small" },
+      { label: "A2", start: 88.9, end: 98, color: red, size: "large" },
+      { label: "↑", start: 98, end: 106.2, color: redUp, size: "small" },
+      { label: "B3", start: 106.2, end: 120.4, color: yellowUp, size: "large" },
+      { label: "↓", start: 120.4, end: 122, color: green, size: "small" },
+      { label: "W", start: 122, end: 122.4, color: purple, size: "small" },
+      { label: "A3", start: 122.4, end: 131.6, color: red, size: "large" },
+      { label: "↑", start: 131.6, end: 143, color: redUp, size: "small" },
     ],
   }
 ];
