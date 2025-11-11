@@ -37,6 +37,16 @@ body {
     margin-bottom: 24px;
 }
 
+.logo-container {
+    display: flex;
+    justify-content: center;
+    
+}
+.logo-container img {
+    height: 88px;
+    width: auto;
+}
+
 .title {
     font-size: 48px;
     font-weight: 800;

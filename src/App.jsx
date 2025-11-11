@@ -865,8 +865,9 @@ export default function App() {
     <div className="app">
       <div className="page">
         <header className="header">
-          <h1 className="title">Hero Contour</h1>
-          <div className="subtitle">Sync Beast</div>
+          <div className="logo-container">
+            <img src="./src/assets/Hero Contour Lab Logo.png" alt="" />
+          </div>
         </header>
 
         {!selected && <Browser songs={SAMPLE_SONGS} onSelect={handleSelect} />}
