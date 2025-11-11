@@ -714,7 +714,7 @@ function Player({ song, onBack, onReady }) {
           ref={audioRef}
           src={song.audioUrl}
           crossOrigin="anonymous"  // 🆕 add this
-          preload="auto"
+          preload="metadata"
           onTimeUpdate={(e) => setTime(e.currentTarget.currentTime)}
           onLoadedMetadata={(e) => setDur(e.currentTarget.duration || 0)}
           controls
