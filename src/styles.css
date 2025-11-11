@@ -759,14 +759,3 @@ body {
     opacity: 1 !important;
 }
 
-/* Swap the header logo based on theme */
-html[data-theme="light"] .logo-container img {
-  content: url("./images/Hero Contour Lab Light Logo.png");
-}
-
-/* (optional) make sure it keeps the same sizing */
-.logo-container img {
-  height: 88px;
-  width: auto;
-  display: block;
-}

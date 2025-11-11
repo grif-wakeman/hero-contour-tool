@@ -2,22 +2,25 @@ import React, { useEffect, useMemo, useRef, useState, useCallback } from "react"
 import "./styles.css";
 
 
+
 import { FaSun, FaMoon } from "react-icons/fa";
 
-function ThemeToggle() {
+function useTheme() {
   const [theme, setTheme] = React.useState(() => localStorage.getItem("theme") || "dark");
-
   React.useEffect(() => {
     localStorage.setItem("theme", theme);
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
+  const toggle = React.useCallback(() => setTheme(t => (t === "dark" ? "light" : "dark")), []);
+  return { theme, toggle };
+}
 
+function ThemeToggle({ theme, toggle }) {
   const isLight = theme === "light";
-
   return (
     <button
       className="theme-toggle"
-      onClick={() => setTheme(isLight ? "dark" : "light")}
+      onClick={toggle}
       aria-label={isLight ? "Switch to dark mode" : "Switch to light mode"}
       title={isLight ? "Dark mode" : "Light mode"}
     >
@@ -646,7 +649,7 @@ function TransportButtons({ audioRef, time, dur }) {
 function RegionLabel({ label }) {
   const l = String(label).toLowerCase();
   if (label === "↑" || l === "up") {
-    return <TbArrowBigUp aria-label="Up"  />;
+    return <TbArrowBigUp aria-label="Up" />;
   }
   if (label === "↓" || l === "down") {
     return <TbArrowBigDown aria-label="Down" />;
@@ -875,6 +878,7 @@ function LoadingScreen({ song }) {
 
 /* ---------- app ---------- */
 export default function App() {
+  const { theme, toggle } = useTheme();
   const [selected, setSelected] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -891,11 +895,18 @@ export default function App() {
 
   return (
     <div className="app">
-      <ThemeToggle /> {/* always-on, top-right */}
+      <ThemeToggle theme={theme} toggle={toggle} />
       <div className="page">
         <header className="header">
           <div className="logo-container">
-            <img src="./images/Hero Contour Lab Logo.png" alt="" />
+            <img
+              src={
+                theme === "light"
+                  ? "./images/Hero Contour Lab Light Logo.png"
+                  : "./images/Hero Contour Lab Logo.png"
+              }
+              alt="Hero Contour Lab Logo"
+            />
           </div>
         </header>
 
