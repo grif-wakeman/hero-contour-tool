@@ -3,6 +3,168 @@
     box-sizing: border-box;
 }
 
+/* THEME TOKENS */
+:root {
+    /* Dark (current) */
+    --bg: #1B1C1E;
+    --text: #ffffff;
+
+    /* surfaces */
+    --box: #232426;
+    --box-elev: #252527;
+    --box-img: #2A2A2C;
+
+    /* lines */
+    --border-weak: rgba(255, 255, 255, 0.05);
+    --border-mid: rgba(255, 255, 255, 0.10);
+
+    /* text variants */
+    --muted: rgba(255, 255, 255, 0.7);
+
+    /* buttons */
+    --btn-neutral: #F3F3F3;
+    --btn-neutral-hover: #E6E6E6;
+    --btn-neutral-active: #CFCFCF;
+
+    --wave-bg: #202123;
+}
+
+/* Light overrides */
+html[data-theme="light"] {
+    --bg: #FFFFFF;
+    /* requested */
+    --text: #111111;
+
+    /* boxes should be light grey */
+    --box: #dbdbdb;
+    --box-elev: #F5F5F7;
+    --box-img: #EEEEEE;
+
+    --border-weak: rgba(0, 0, 0, 0.06);
+    --border-mid: rgba(0, 0, 0, 0.12);
+    --muted: rgba(0, 0, 0, 0.65);
+
+    /* keep neutral button ramp */
+    --btn-neutral: #dbdbdb;
+    --btn-neutral-hover: #E6E6E6;
+    --btn-neutral-active: #CFCFCF;
+
+    --wave-bg: #F4F4F6;
+}
+
+
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+}
+
+.subtitle {
+    color: var(--muted);
+}
+
+.title-sm {
+    color: var(--text);
+}
+
+.input,
+.select {
+    border: 1px solid var(--border-mid);
+    background: color-mix(in srgb, var(--bg), #000 20%);
+    color: var(--text);
+}
+
+.grid .card {
+    background: var(--box-elev);
+    border: 1px solid var(--border-weak);
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.40),
+        0 6px 12px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.45);
+}
+
+.grid .card:hover {
+    background-color: color-mix(in srgb, var(--box-elev), #fff 5%);
+}
+
+.card-img-container {
+    background: var(--box-img);
+    border: 1px solid var(--border-weak);
+}
+
+.card p {
+    color: var(--muted);
+}
+
+.player-card {
+    border: 1px solid var(--border-weak);
+    background: var(--box);
+    color: var(--text);
+}
+
+.player h2 {
+    color: var(--text);
+}
+
+.playBtn {
+    background-color: var(--btn-neutral);
+    color: #1C1C1E;
+}
+
+.playBtn:hover {
+    background-color: var(--btn-neutral-hover);
+}
+
+.playBtn:active {
+    background-color: var(--btn-neutral-active);
+}
+
+.backBtn {
+    background-color: black;
+    color: var(--text);
+}
+
+.backBtn:hover {
+    background-color: color-mix(in srgb, var(--text), #fff 10%);
+    color: var(--text);
+}
+
+.backBtn:active {
+    background-color: color-mix(in srgb, var(--bg), #000 5%);
+    color: var(--text);
+}
+
+.region {
+    background: color-mix(in srgb, var(--box), #fff 2%);
+    border: 1px solid var(--border-weak);
+    color: var(--text);
+}
+
+.region:hover {
+    background-color: color-mix(in srgb, var(--box), #fff 6%);
+}
+
+.tip {
+    color: var(--muted);
+}
+
+.loading-screen {
+    background: color-mix(in srgb, var(--bg), transparent 30%);
+}
+
+.loading-card {
+    background: var(--box);
+    border: 1px solid var(--border-weak);
+    color: var(--text);
+}
+
+#waveform {
+    background: var(--wave-bg);
+}
+
+
 html,
 body,
 #root {
@@ -12,8 +174,8 @@ body,
 
 body {
 
-    background: #1B1C1E;
-    color: #fff;
+    background: var(--bg);
+    color: var(--text);
     font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
 }
 
@@ -40,8 +202,9 @@ body {
 .logo-container {
     display: flex;
     justify-content: center;
-    
+
 }
+
 .logo-container img {
     height: 88px;
     width: auto;
@@ -56,12 +219,12 @@ body {
 
 .subtitle {
     margin-top: 6px;
-    color: rgba(255, 255, 255, .6);
+    color: var(--muted);
     font-size: 14px;
 }
 
 .title-sm {
-    color: #F3F3F3;
+    color: var(--text);
 }
 
 /* search / filters */
@@ -78,17 +241,16 @@ body {
     flex: 1 1 420px;
     padding: 12px 14px;
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, .1);
-    background: rgba(0, 0, 0, .2);
-    color: #fff;
+    border: 1px solid var(--border-mid);
+    background: color-mix(in srgb, var(--bg), #000 20%);
+    color: var(--text);
 }
 
 .select {
     padding: 12px 14px;
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, .1);
-    background: rgba(0, 0, 0, .2);
-    color: #fff;
+    background: color-mix(in srgb, var(--bg), #000 20%);
+    color: var(--text);
 }
 
 /* browser grid */
@@ -131,9 +293,9 @@ body {
 .grid .card {
     position: relative;
     /* not for pseudo; keeps transforms clean */
-    background: #252527;
+    background: var(--box-elev);
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-weak);
     /* base depth */
     box-shadow:
         0 1px 2px rgba(0, 0, 0, 0.40),
@@ -145,7 +307,7 @@ body {
 }
 
 .grid .card:hover {
-    background-color: #343436;
+    background-color: color-mix(in srgb, var(--box-elev), #fff 5%);
     transform: translateY(-3px);
     box-shadow:
         0 4px 8px rgba(0, 0, 0, 0.45),
@@ -173,8 +335,8 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    background: #2A2A2C;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--box-img);
+    border: 1px solid var(--border-weak);
     box-shadow:
         0 1px 2px rgba(0, 0, 0, 0.45),
         0 4px 10px rgba(0, 0, 0, 0.35);
@@ -205,7 +367,7 @@ body {
     margin: 0 0 4px;
     font-size: 18px;
     font-weight: 600;
-    filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.45));
+    /* filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.45)); */
 }
 
 
@@ -213,8 +375,8 @@ body {
 .card p {
     margin: 0;
     font-size: 13px;
-    color: rgba(255, 255, 255, .7);
-    filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.45));
+    color: var(--muted);
+    /* filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.45)); */
 }
 
 /* buttons */
@@ -223,18 +385,18 @@ body {
     padding: 10px 14px;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, .1);
-    background: #F3F3F3;
+    background: var(--btn-neutral);
     color: #1C1C1E;
     cursor: pointer;
 }
 
 .btn:hover {
-    background: #E6E6E6;
+    background: var(--btn-neutral-hover);
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
 }
 
 .btn:active {
-    background: #CFCFCF;
+    background: var(--btn-neutral-active);
 }
 
 /* ---- player view ---- */
@@ -262,46 +424,32 @@ body {
 
 .player-card {
     width: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-weak);
     box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.05), inset 0 -2px 6px rgba(0, 0, 0, 0.5);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-    background: #232426;
+    background: var(--box);
+    color: var(--text);
     border-radius: 12px;
     padding: 20px;
 }
 
 .player h2 {
-    color: #F3F3F3;
+    color: var(--text);
 }
 
 .playBtn {
-    background-color: #F2F2F2;
+    background-color: var(--btn-neutral);
     color: #1C1C1E;
 }
 
 .playBtn:hover {
-    background-color: #E7E7E7;
+    background-color: var(--btn-neutral-hover);
     color: #1C1C1E;
 }
 
 .playBtn:active {
-    background-color: #D5D5D5;
+    background-color: var(--btn-neutral-active);
     color: #1C1C1E;
-}
-
-.backBtn {
-    background-color: #2A2A2C;
-    color: #F3F3F3;
-}
-
-.backBtn:hover {
-    background-color: #333335;
-    color: #fff;
-}
-
-.backBtn:active {
-    background-color: #1F1F20;
-    color: #fff;
 }
 
 .time-transport {
@@ -337,7 +485,8 @@ body {
 }
 
 #waveform {
-    background: #202123;
+    background: var(--wave-bg);
+    ;
     /* or your UI bg */
     isolation: auto;
     /* avoid isolate */
@@ -406,9 +555,9 @@ body {
     /* slightly smaller radius */
     overflow: hidden;
     /* clip long labels */
-    background: #303032;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    color: var(--section-color);
+    background: color-mix(in srgb, var(--box), #fff 2%);
+    border: 1px solid var(--border-weak);
+    color: var(--text);
     box-shadow:
         0 2px 4px rgba(0, 0, 0, 0.55),
         /* tight base shadow */
@@ -417,12 +566,12 @@ body {
         0 12px 24px rgba(0, 0, 0, 0.25);
     /* soft outer diffusion */
     transition: background 150ms ease, box-shadow 150ms ease, transform 150ms ease;
-    text-shadow: 0px 0px 5px black;
+    /* text-shadow: 0px 0px 5px black; */
     /* 2px wide blue stroke */
 }
 
 .region:hover {
-    background-color: #343436;
+    background-color: color-mix(in srgb, var(--box), #fff 6%);
     box-shadow:
         0 4px 8px rgba(0, 0, 0, 0.6),
         0 10px 20px rgba(0, 0, 0, 0.45),
@@ -481,7 +630,7 @@ body {
 .tip {
     text-align: center;
     font-size: 12px;
-    color: rgba(255, 255, 255, .5);
+    color: var(--muted);
 }
 
 .ghost {
@@ -495,7 +644,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #151718b8;
+    background: color-mix(in srgb, var(--bg), transparent 30%);
     backdrop-filter: blur(20px);
     z-index: 999;
 }
@@ -505,11 +654,10 @@ body {
     align-items: center;
     gap: 14px;
     padding: 10px;
-    background: #232426;
     border-radius: 12px;
-    background: #303032;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    color: #fff;
+    background: var(--box);
+    border: 1px solid var(--border-weak);
+    color: var(--text);
     box-shadow:
         0 2px 4px rgba(0, 0, 0, 0.55),
         /* tight base shadow */
@@ -518,7 +666,7 @@ body {
         0 12px 24px rgba(0, 0, 0, 0.25);
     /* soft outer diffusion */
     transition: background 150ms ease, box-shadow 150ms ease, transform 150ms ease;
-    text-shadow: 0px 0px 5px black;
+    /* text-shadow: 0px 0px 5px black; */
     /* 2px wide blue stroke */
 }
 
@@ -545,7 +693,7 @@ body {
     gap: 14px;
     padding: 10px;
     border: 1px solid #ffffff1a;
-    background: #191919;
+    background: var(--box-elev);
     border-radius: 16px;
 }
 
@@ -565,5 +713,60 @@ body {
 .loading-card p {
     margin: 0;
     font-size: 13px;
-    color: rgba(255, 255, 255, .7);
+    
+}
+
+/* ---- FIXED THEME TOGGLE ---- */
+.theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 1000;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    border: 1px solid var(--border-mid);
+    background: var(--box);
+    color: var(--text) !important;
+    /* forces visible icon color */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    font-size: 22px;
+    /* icon size */
+    line-height: 1;
+}
+
+.theme-toggle:hover {
+    background: color-mix(in srgb, var(--box), #fff 6%);
+}
+
+/* Ensure FA icons respect color */
+.theme-toggle svg {
+    width: 1em;
+    height: 1em;
+    display: block;
+    fill: currentColor !important;
+    stroke: none !important;
+    opacity: 1 !important;
+}
+
+.theme-toggle svg * {
+    fill: currentColor !important;
+    stroke: none !important;
+    opacity: 1 !important;
+}
+
+/* Swap the header logo based on theme */
+html[data-theme="light"] .logo-container img {
+  content: url("./images/Hero Contour Lab Light Logo.png");
+}
+
+/* (optional) make sure it keeps the same sizing */
+.logo-container img {
+  height: 88px;
+  width: auto;
+  display: block;
 }

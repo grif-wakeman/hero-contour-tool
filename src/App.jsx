@@ -2,6 +2,33 @@ import React, { useEffect, useMemo, useRef, useState, useCallback } from "react"
 import "./styles.css";
 
 
+import { FaSun, FaMoon } from "react-icons/fa";
+
+function ThemeToggle() {
+  const [theme, setTheme] = React.useState(() => localStorage.getItem("theme") || "dark");
+
+  React.useEffect(() => {
+    localStorage.setItem("theme", theme);
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
+  const isLight = theme === "light";
+
+  return (
+    <button
+      className="theme-toggle"
+      onClick={() => setTheme(isLight ? "dark" : "light")}
+      aria-label={isLight ? "Switch to dark mode" : "Switch to light mode"}
+      title={isLight ? "Dark mode" : "Light mode"}
+    >
+      <span className="theme-emoji">{isLight ? "🌙" : "☀️"}</span>
+    </button>
+  );
+}
+
+
+
+
 const blueUp = "#3B81E3";
 const blue = "#5E98E8";
 const yellowUp = "#DAA044";
@@ -619,10 +646,10 @@ function TransportButtons({ audioRef, time, dur }) {
 function RegionLabel({ label }) {
   const l = String(label).toLowerCase();
   if (label === "↑" || l === "up") {
-    return <TbArrowBigUp aria-label="Up" style={{ filter: "drop-shadow(0px 0px 3px black)" }} />;
+    return <TbArrowBigUp aria-label="Up"  />;
   }
   if (label === "↓" || l === "down") {
-    return <TbArrowBigDown aria-label="Down" style={{ filter: "drop-shadow(0px 0px 3px black)" }} />;
+    return <TbArrowBigDown aria-label="Down" />;
   }
   return <>{label}</>;
 }
@@ -730,6 +757,7 @@ function Player({ song, onBack, onReady }) {
                   key={r.id ?? `${song.id}-r-${idx}`}
                   className={`region ${r.size || ""} ${idx === activeRegionIndex ? "active" : ""}`}
                   style={{
+                    fontWeight: idx === activeRegionIndex ? "700" : "500",
                     border: `1px solid ${r.color}`,
                     background: idx === activeRegionIndex ? makeSolid(r.color) : "transparent",
                     color: idx === activeRegionIndex ? "#fff" : r.color,
@@ -863,6 +891,7 @@ export default function App() {
 
   return (
     <div className="app">
+      <ThemeToggle /> {/* always-on, top-right */}
       <div className="page">
         <header className="header">
           <div className="logo-container">
@@ -878,7 +907,6 @@ export default function App() {
             {loading && <LoadingScreen song={selected} />}
           </>
         )}
-
       </div>
     </div>
   );
