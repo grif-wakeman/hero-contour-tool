@@ -866,7 +866,7 @@ export default function App() {
       <div className="page">
         <header className="header">
           <div className="logo-container">
-            <img src="./public/images/Hero Contour Lab Logo.png" alt="" />
+            <img src="./images/Hero Contour Lab Logo.png" alt="" />
           </div>
         </header>
 
