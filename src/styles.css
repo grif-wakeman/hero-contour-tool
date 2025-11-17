@@ -137,13 +137,13 @@ body {
 }
 
 .region {
-    background: color-mix(in srgb, var(--box), #fff 2%);
+    background: var(--bg);
     border: 1px solid var(--border-weak);
     color: var(--text);
 }
 
 .region:hover {
-    background-color: color-mix(in srgb, var(--box), #fff 6%);
+    background-color: color-mix(in srgb, var(--box), #d1d0d0 6%);
 }
 
 .tip {
@@ -292,15 +292,15 @@ body {
 
 .grid .card {
     position: relative;
-    /* not for pseudo; keeps transforms clean */
+
     background: var(--box-elev);
     border-radius: 10px;
     border: 1px solid var(--border-weak);
-    /* base depth */
+
     box-shadow:
         0 1px 2px rgba(0, 0, 0, 0.40),
         0 6px 12px rgba(0, 0, 0, 0.35),
-        /* inner micro-edges (make content feel inset/anchored) */
+
         inset 0 1px 0 rgba(255, 255, 255, 0.04),
         inset 0 -1px 0 rgba(0, 0, 0, 0.45);
     transition: box-shadow 150ms ease, transform 150ms ease;
@@ -465,7 +465,7 @@ body {
 .wave {
     width: 100%;
     border-radius: 8px;
-    padding: 12px;
+    padding: 5px 5px 0;
 
     /* soften the edge slightly */
     border: 1px solid rgba(255, 255, 255, 0.03);
@@ -545,17 +545,18 @@ body {
 .region {
     aspect-ratio: 1 / 1;
     /* ⬅️ makes it a square */
-    padding: 10px;
+    padding: 5px;
     /* tighter */
     display: grid;
-    place-items: center;
+    justify-content: center;
+    align-items: center;
     /* center label vertically + horizontally */
     text-align: center;
     border-radius: 12px;
     /* slightly smaller radius */
     overflow: hidden;
     /* clip long labels */
-    background: color-mix(in srgb, var(--box), #fff 2%);
+    background: var(--bg);
     border: 1px solid var(--border-weak);
     color: var(--text);
     box-shadow:
@@ -586,6 +587,8 @@ body {
         0 16px 32px rgba(0, 0, 0, 0.35);
     transform: translateY(-2px);
 }
+
+
 
 
 /* allow variable column spans */
@@ -713,7 +716,7 @@ body {
 .loading-card p {
     margin: 0;
     font-size: 13px;
-    
+
 }
 
 /* ---- FIXED THEME TOGGLE ---- */
@@ -758,4 +761,3 @@ body {
     stroke: none !important;
     opacity: 1 !important;
 }
-

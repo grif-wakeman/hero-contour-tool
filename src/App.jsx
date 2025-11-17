@@ -15,6 +15,8 @@ function useTheme() {
   return { theme, toggle };
 }
 
+import { IoSunny, IoMoon } from "react-icons/io5";
+
 function ThemeToggle({ theme, toggle }) {
   const isLight = theme === "light";
   return (
@@ -24,7 +26,7 @@ function ThemeToggle({ theme, toggle }) {
       aria-label={isLight ? "Switch to dark mode" : "Switch to light mode"}
       title={isLight ? "Dark mode" : "Light mode"}
     >
-      <span className="theme-emoji">{isLight ? "🌙" : "☀️"}</span>
+      <span className="theme-emoji"> {isLight ? <IoMoon /> : <IoSunny />}</span>
     </button>
   );
 }
@@ -462,17 +464,24 @@ function WaveSurferWaveform({ audioRef, regions, height = 200, follow = false, o
 
           // 1) Base waveform (bars)
           const peaks = channels[0];
-          const barW = 3, gap = 1;
-          const step = (peaks.length / width) * (barW + gap); // even sampling
+          const barW = 5, gap = 1;
+          const step = (peaks.length / width) * (barW + gap);
           ctx.fillStyle = "#c1c1c1";
 
           for (let x = 0, i = 0; x < width; x += (barW + gap), i += step) {
             const idx = Math.max(0, Math.min(peaks.length - 1, Math.floor(i)));
             const amp = Math.abs(peaks[idx] || 0);
+
             const h = Math.max(1, amp * height);
-            const y = (height - h) / 2;
+            const y = height - h; // bars start at bottom
+
             ctx.fillRect(x, y, barW, h);
           }
+
+
+
+
+
 
           // 2) Tint ALL regions (only where waveform pixels exist)
           for (const seg of regions || []) {
@@ -551,7 +560,9 @@ function WaveSurferWaveform({ audioRef, regions, height = 200, follow = false, o
 
 import { FaPlay } from 'react-icons/fa';
 import { FaPause } from 'react-icons/fa';
-import { TbArrowBigUp, TbArrowBigDown } from "react-icons/tb";
+import { TbArrowBigUpFilled, TbArrowBigDownFilled } from "react-icons/tb";
+import { ImArrowUpRight, ImArrowDownRight } from "react-icons/im";
+import { FaLongArrowAltUp, FaLongArrowAltDown } from "react-icons/fa";
 
 
 // add time, dur props
@@ -649,10 +660,10 @@ function TransportButtons({ audioRef, time, dur }) {
 function RegionLabel({ label }) {
   const l = String(label).toLowerCase();
   if (label === "↑" || l === "up") {
-    return <TbArrowBigUp aria-label="Up" />;
+    return <ImArrowUpRight aria-label="Up" />;
   }
   if (label === "↓" || l === "down") {
-    return <TbArrowBigDown aria-label="Down" />;
+    return <ImArrowDownRight aria-label="Down" />;
   }
   return <>{label}</>;
 }
@@ -760,10 +771,11 @@ function Player({ song, onBack, onReady }) {
                   key={r.id ?? `${song.id}-r-${idx}`}
                   className={`region ${r.size || ""} ${idx === activeRegionIndex ? "active" : ""}`}
                   style={{
-                    fontWeight: idx === activeRegionIndex ? "700" : "500",
-                    border: `1px solid ${r.color}`,
-                    background: idx === activeRegionIndex ? makeSolid(r.color) : "transparent",
-                    color: idx === activeRegionIndex ? "#fff" : r.color,
+                    fontWeight: idx === activeRegionIndex ? "800" : "600",
+                    fontSize: "20px",
+                    border: idx === activeRegionIndex ? `3px solid color-mix(in srgb, ${r.color}, #000 30%)` : `3px solid ${r.color}`,
+                    background: idx === activeRegionIndex ? `${r.color}` : "",
+                    color: idx === activeRegionIndex ? `#111111` : ``,
                     transition: "background 120ms linear, color 120ms linear",
                   }}
                   onClick={async () => {
