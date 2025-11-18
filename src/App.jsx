@@ -5,6 +5,7 @@ import "./styles.css";
 
 import { FaSun, FaMoon } from "react-icons/fa";
 
+
 function useTheme() {
   const [theme, setTheme] = React.useState(() => localStorage.getItem("theme") || "dark");
   React.useEffect(() => {
@@ -46,7 +47,7 @@ const purple = "#8B5BC2";
 const lightpurple = "#A079CD";
 const orangeUp = "#E37C39";
 const orange = "#FF9950";
-const grey = "#b9b8b8ff"
+const grey = "#ebebeb"
 const upArrow = "./public/arrow-big-up.png"
 const downArrow = "./public/arrow-big-down.png"
 const downArrowImg = document.getElementById("downArrow");
@@ -665,7 +666,7 @@ function RegionLabel({ label }) {
   if (label === "↓" || l === "down") {
     return <ImArrowDownRight aria-label="Down" />;
   }
-  return <>{label}</>;
+  return <span className="region-text">{label}</span>;
 }
 
 
@@ -724,6 +725,8 @@ function Player({ song, onBack, onReady }) {
       a.load(); // force reload of new source
     } catch { }
   }, [song?.audioUrl]); // runs whenever the song changes
+
+
 
   return (
 
@@ -879,7 +882,7 @@ function LoadingScreen({ song }) {
         {song.albumArt && <img src={song.albumArt} alt={song.title} />}
         <div>
           <h2>{song.title}</h2>
-          <p>{song.artist}</p>
+          <p className="artist">{song.artist}</p>
           <p style={{ opacity: 0.6 }}>Building waveform…</p>
         </div>
       </div>
@@ -899,6 +902,10 @@ export default function App() {
     setSelected(song);
   };
 
+  const handleLogoClick = () => {
+    setSelected(null);
+    setLoading(false);
+  };
 
   const handleReady = () => {
     // Give React a short frame to mount the Player before hiding loading
@@ -910,7 +917,7 @@ export default function App() {
       <ThemeToggle theme={theme} toggle={toggle} />
       <div className="page">
         <header className="header">
-          <div className="logo-container">
+          <div className="logo-container" onClick={handleLogoClick}>
             <img
               src={
                 theme === "light"

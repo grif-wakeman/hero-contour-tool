@@ -26,7 +26,7 @@
     --btn-neutral-hover: #E6E6E6;
     --btn-neutral-active: #CFCFCF;
 
-    --wave-bg: #202123;
+    --wave-bg: #17181a;
 }
 
 /* Light overrides */
@@ -36,7 +36,7 @@ html[data-theme="light"] {
     --text: #111111;
 
     /* boxes should be light grey */
-    --box: #dbdbdb;
+    --box: #ebebeb;
     --box-elev: #F5F5F7;
     --box-img: #EEEEEE;
 
@@ -98,43 +98,10 @@ body {
     color: var(--muted);
 }
 
-.player-card {
-    border: 1px solid var(--border-weak);
-    background: var(--box);
-    color: var(--text);
-}
-
 .player h2 {
     color: var(--text);
 }
 
-.playBtn {
-    background-color: var(--btn-neutral);
-    color: #1C1C1E;
-}
-
-.playBtn:hover {
-    background-color: var(--btn-neutral-hover);
-}
-
-.playBtn:active {
-    background-color: var(--btn-neutral-active);
-}
-
-.backBtn {
-    background-color: black;
-    color: var(--text);
-}
-
-.backBtn:hover {
-    background-color: color-mix(in srgb, var(--text), #fff 10%);
-    color: var(--text);
-}
-
-.backBtn:active {
-    background-color: color-mix(in srgb, var(--bg), #000 5%);
-    color: var(--text);
-}
 
 .region {
     background: var(--bg);
@@ -191,6 +158,7 @@ body {
     max-width: none;
     padding: 32px 24px;
     margin: 0 auto;
+    padding-top: 72px;
 }
 
 /* header */
@@ -202,6 +170,7 @@ body {
 .logo-container {
     display: flex;
     justify-content: center;
+    cursor: pointer;
 
 }
 
@@ -426,7 +395,7 @@ body {
     width: 100%;
     border: 1px solid var(--border-weak);
     box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.05), inset 0 -2px 6px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
     background: var(--box);
     color: var(--text);
     border-radius: 12px;
@@ -437,20 +406,46 @@ body {
     color: var(--text);
 }
 
+.artist {
+    color: var(--muted);
+    margin-top: 4px;
+    font-size: 14px;
+}
+
 .playBtn {
-    background-color: var(--btn-neutral);
-    color: #1C1C1E;
+    background-color: var(--box);
+    color: var(--text);
 }
 
 .playBtn:hover {
     background-color: var(--btn-neutral-hover);
-    color: #1C1C1E;
 }
 
 .playBtn:active {
     background-color: var(--btn-neutral-active);
-    color: #1C1C1E;
 }
+
+.backBtn,
+.playBtn {
+    background-color: var(--box);
+    color: var(--text);
+    border: 1px solid var(--border-mid);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.backBtn:hover,
+.playBtn:hover {
+    background-color: color-mix(in srgb, var(--box), #fff 10%);
+    color: var(--text);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.backBtn:active,
+.playBtn:active {
+    background-color: color-mix(in srgb, var(--box), #000 5%);
+    color: var(--text);
+}
+
 
 .time-transport {
     display: flex;
@@ -485,7 +480,7 @@ body {
 }
 
 #waveform {
-    background: var(--wave-bg);
+    background: var(--bg);
     ;
     /* or your UI bg */
     isolation: auto;
@@ -544,14 +539,18 @@ body {
 /* square, centered, compact */
 .region {
     aspect-ratio: 1 / 1;
-    /* ⬅️ makes it a square */
     padding: 5px;
-    /* tighter */
-    display: grid;
-    justify-content: center;
+    display: flex;
+    /* was grid */
     align-items: center;
-    /* center label vertically + horizontally */
+    /* vertical center */
+    justify-content: center;
+    /* horizontal center */
     text-align: center;
+    line-height: 1;
+    font-size: 20px;
+    font-weight: 600;
+    /* matches your default non-active weight */
     border-radius: 12px;
     /* slightly smaller radius */
     overflow: hidden;
@@ -559,13 +558,7 @@ body {
     background: var(--bg);
     border: 1px solid var(--border-weak);
     color: var(--text);
-    box-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.55),
-        /* tight base shadow */
-        0 6px 12px rgba(0, 0, 0, 0.45),
-        /* mid falloff */
-        0 12px 24px rgba(0, 0, 0, 0.25);
-    /* soft outer diffusion */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
     transition: background 150ms ease, box-shadow 150ms ease, transform 150ms ease;
     /* text-shadow: 0px 0px 5px black; */
     /* 2px wide blue stroke */
@@ -573,22 +566,33 @@ body {
 
 .region:hover {
     background-color: color-mix(in srgb, var(--box), #fff 6%);
-    box-shadow:
-        0 4px 8px rgba(0, 0, 0, 0.6),
-        0 10px 20px rgba(0, 0, 0, 0.45),
-        0 16px 32px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
     transform: translateY(-2px);
 }
 
 .region.active {
-    box-shadow:
-        0 4px 8px rgba(0, 0, 0, 0.6),
-        0 10px 20px rgba(0, 0, 0, 0.45),
-        0 16px 32px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
     transform: translateY(-2px);
 }
 
+.region .name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
 
+.region svg {
+    display: block;
+    /* remove inline baseline quirks */
+}
+
+.region-text {
+    display: inline-block;
+    transform: translateY(-1px);
+    /* try -1 or -2px to taste */
+}
 
 
 /* allow variable column spans */
