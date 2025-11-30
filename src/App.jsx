@@ -54,7 +54,7 @@ const downArrowImg = document.getElementById("downArrow");
 
 /* ---------- sample data ---------- */
 const SAMPLE_SONGS = [
-  {
+  /* {
     id: "banana",
     title: "Banana",
     artist: "Stony Pony",
@@ -66,14 +66,14 @@ const SAMPLE_SONGS = [
       { id: "theme", label: "Theme", start: 12.4, end: 52.0, color: "rgba(34,197,94,0.25)" },
       { id: "solo1", label: "Solo 1", start: 52.0, end: 130.5, color: "rgba(245,158,11,0.25)" },
     ],
-  },
+  }, */
   {
     id: "check-it-out",
     title: "check it out",
     artist: "phoebemonster",
     genre: "Pop",
     audioUrl: "./audio/check it out by phoebemonster.wav",
-    albumArt: "./audio/hit different by phoebemonster.jpg",
+    albumArt: "./audio/check it out by phoebemonster.JPG",
     regions: [
       { label: "···", start: 0.0, end: 8.4, color: grey, size: "large" },
       { label: "S1", start: 8.4, end: 16.3, color: blue, size: "large" },
@@ -92,7 +92,7 @@ const SAMPLE_SONGS = [
       { label: "A2", start: 116.5, end: 150, color: red, size: "large" }
     ],
   },
-  {
+  /* {
     id: "go-outside",
     title: "Go Outside",
     artist: "Spin",
@@ -113,8 +113,8 @@ const SAMPLE_SONGS = [
       { label: "W", start: 115.6, end: 40.5, color: "rgba(96,165,250,0.25)", size: "small" },
       { label: "A2", start: 116.5, end: 72.5, color: "rgba(34,197,94,0.25)", size: "large" }
     ],
-  },
-  {
+  }, */
+  /* {
     id: "on-the-moon",
     title: "On The Moon",
     artist: "Spin",
@@ -158,8 +158,8 @@ const SAMPLE_SONGS = [
       { label: "W", start: 115.6, end: 40.5, color: "rgba(96,165,250,0.25)", size: "small" },
       { label: "A2", start: 116.5, end: 72.5, color: "rgba(34,197,94,0.25)", size: "large" }
     ],
-  },
-  {
+  }, */
+  /* {
     id: "tleilax",
     title: "Tleilax",
     artist: "Graham Barton",
@@ -180,7 +180,7 @@ const SAMPLE_SONGS = [
       { label: "W", start: 115.6, end: 40.5, color: "rgba(96,165,250,0.25)", size: "small" },
       { label: "A2", start: 116.5, end: 72.5, color: "rgba(34,197,94,0.25)", size: "large" }
     ],
-  },
+  }, */
   {
     id: "gotta-be-me",
     title: "Gotta Be Me",
@@ -346,7 +346,59 @@ const SAMPLE_SONGS = [
       { label: "A3", start: 122.4, end: 131.6, color: red, size: "large" },
       { label: "↑", start: 131.6, end: 143, color: redUp, size: "small" },
     ],
-  }
+  },
+  {
+    id: "lipstick",
+    title: "Lipstick",
+    artist: "MinnySeries",
+    genre: "Electronic",
+    audioUrl: "./audio/Lipstick by MinnySeries.wav",
+    albumArt: "./audio/Lipstick by MinnySeries.jpeg",
+    regions: [
+      { label: "···", start: 0, end: 1.0, color: grey, size: "large" },
+      { label: "S1", start: 1.0, end: 9.4, color: blue, size: "large" },
+      { label: "↑", start: 9.4, end: 17.7, color: blueUp, size: "small" },
+      { label: "B1", start: 17.7, end: 34.4, color: yellow, size: "large" },
+      { label: "↓", start: 34.4, end: 36.5, color: green, size: "small" },
+      { label: "A1", start: 36.5, end: 44.8, color: red, size: "large" },
+      { label: "↑", start: 44.8, end: 51.1, color: redUp, size: "small" },
+      { label: "W", start: 51, end: 53.1, color: purple, size: "large" },
+      { label: "S2", start: 53.1, end: 61.5, color: blue, size: "large" },
+      { label: "↑", start: 61.5, end: 69.8, color: blueUp, size: "small" },
+      { label: "B2", start: 69.8, end: 86.5, color: yellowUp, size: "large" },
+      { label: "↓", start: 86.5, end: 88.6, color: green, size: "small" },
+      { label: "A2", start: 88.6, end: 97, color: red, size: "large" },
+      { label: "↑", start: 97, end: 103.3, color: redUp, size: "small" },
+      { label: "W", start: 103.3, end: 105.3, color: purple, size: "large" },
+      { label: "B3", start: 105.3, end: 117.8, color: yellow, size: "large" },
+      { label: "↓", start: 117.8, end: 119.9, color: green, size: "small" },
+      { label: "A3", start: 119.9, end: 127.2, color: red, size: "large" },
+      { label: "↓", start: 127.2, end: 128.3, color: green, size: "small" },
+      { label: "↑", start: 128.3, end: 151.3, color: redUp, size: "small" },
+      { label: "W", start: 151.3, end: 156, color: purple, size: "large" },
+    ],
+  },
+  {
+    id: "ripples",
+    title: "Ripples",
+    artist: "Dan Policar",
+    genre: "Orchestral",
+    audioUrl: "./audio/Ripples by Dan Policar.wav",
+    albumArt: "./audio/Ripples by Dan Policar.JPG",
+    regions: [
+      { label: "S1", start: 0.0, end: 9.2, color: blue, size: "large" },
+      { label: "↑", start: 9.2, end: 27.7, color: blueUp, size: "small" },
+      { label: "B1", start: 27.7, end: 43.8, color: yellow, size: "large" },
+      { label: "↓", start: 43.8, end: 46.1, color: green, size: "small" },
+      { label: "A1", start: 46.1, end: 64.6, color: red, size: "large" },
+      { label: "S2", start: 64.6, end: 73.8, color: blue, size: "large" },
+      { label: "↑", start: 73.8, end: 83.1, color: blueUp, size: "small" },
+      { label: "B2", start: 83.1, end: 108.4, color: yellowUp, size: "large" },
+      { label: "↓", start: 108.4, end: 110.8, color: green, size: "small" },
+      { label: "A2", start: 110.8, end: 141, color: red, size: "large" },
+    ],
+  },
+
 ];
 
 /* ---------- utils ---------- */
