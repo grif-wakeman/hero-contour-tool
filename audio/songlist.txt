@@ -21,4 +21,4 @@ As many SBA tracks as we can
 
 
 
-ffmpeg -i "Good Good Mood by Pepper & Sun.aif" -c:a pcm_s16le -ar 48000 "Good Good Mood by Pepper & Sun.wav"
+ffmpeg -i "Larger Than Life by GutterPop.aif" -c:a pcm_s16le -ar 48000 "Larger Than Life by GutterPop.wav"
