@@ -21,4 +21,4 @@ As many SBA tracks as we can
 
 
 
-ffmpeg -i "Tleilax (Instrumental) by Graham Barton.aif" -c:a pcm_s16le -ar 48000 "Tleilax by Graham Barton.wav"
+ffmpeg -i "Good Good Mood by Pepper & Sun.aif" -c:a pcm_s16le -ar 48000 "Good Good Mood by Pepper & Sun.wav"
