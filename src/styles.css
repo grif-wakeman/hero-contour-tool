@@ -135,7 +135,7 @@ body {
 html,
 body,
 #root {
-    height: 100%;
+    height: auto;
     margin: 0;
 }
 
@@ -685,9 +685,38 @@ body {
 
 
 .loading-card img {
+    display: block;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translateZ(0);
+    transition: transform 140ms ease, filter 140ms ease;
+}
+
+.card-img-container {
     height: 100px;
     width: 100px;
-    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background: var(--box-img);
+    border: 1px solid var(--border-weak);
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.45),
+        0 4px 10px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    /* rounds the image corners */
+}
+
+.card-img-container img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translateZ(0);
+    transition: transform 140ms ease, filter 140ms ease;
 }
 
 .red {
