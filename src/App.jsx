@@ -214,7 +214,7 @@ const SAMPLE_SONGS = [
     artist: "Suede Brigade",
     genre: "Rock",
     audioUrl: "./audio/Show Em Whatcha Got by Suede Brigade.wav",
-    albumArt: "./audio/Show Em Whatcha Got By Suede Brigade.JPG",
+    albumArt: "./audio/Show Em Whatcha Got By Suede Brigade.jpg",
     regions: [
       { label: "···", start: 0, end: 5.5, color: grey, size: "large" },
       { label: "S1", start: 5.6, end: 17.2, color: blue, size: "large" },
@@ -428,7 +428,7 @@ const SAMPLE_SONGS = [
     id: "dark-side",
     title: "Dark Side",
     artist: "OBSIDIEN",
-    genre: "pop",
+    genre: "Pop",
     audioUrl: "./audio/Dark Side by OBSIDIEN.wav",
     albumArt: "./audio/Dark Side by OBSIDIEN.png",
     regions: [
@@ -1130,9 +1130,13 @@ function Player({ song, onBack, onReady }) {
                   key={r.id ?? `${song.id}-r-${idx}`}
                   className={`region ${r.size || ""} ${idx === activeRegionIndex ? "active" : ""}`}
                   style={{
-                    fontWeight: idx === activeRegionIndex ? "800" : "600",
+                    fontWeight: 600,
                     fontSize: "20px",
-                    border: idx === activeRegionIndex ? `3px solid color-mix(in srgb, ${r.color}, #000 30%)` : `3px solid ${r.color}`,
+                    borderWidth: 3,
+                    borderStyle: "solid",
+                    borderColor: idx === activeRegionIndex
+                      ? `color-mix(in srgb, ${r.color}, #000 30%)`
+                      : r.color,
                     background: idx === activeRegionIndex ? `${r.color}` : "",
                     color: idx === activeRegionIndex ? `#111111` : ``,
                     transition: "background 120ms linear, color 120ms linear",

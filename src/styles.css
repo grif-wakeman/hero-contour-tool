@@ -68,12 +68,7 @@ body {
     color: var(--text);
 }
 
-.input,
-.select {
-    border: 1px solid var(--border-mid);
-    background: color-mix(in srgb, var(--bg), #000 20%);
-    color: var(--text);
-}
+
 
 .grid .card {
     background: var(--box-elev);
@@ -216,9 +211,8 @@ body {
 }
 
 .select {
-    padding: 12px 14px;
+    padding: 10px;
     border-radius: 12px;
-    background: color-mix(in srgb, var(--bg), #000 20%);
     color: var(--text);
 }
 
@@ -426,19 +420,57 @@ body {
 }
 
 .backBtn,
-.playBtn {
+.playBtn,
+.theme-toggle,
+select,
+input {
     background-color: var(--box);
     color: var(--text);
     border: 1px solid var(--border-mid);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
-.backBtn:hover,
-.playBtn:hover {
-    background-color: color-mix(in srgb, var(--box), #fff 10%);
-    color: var(--text);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+.backBtn,
+.playBtn,
+.theme-toggle,
+select,
+input {
+    /* override with richer shadows */
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.05),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.4),
+        0 2px 4px rgba(0, 0, 0, 0.35),
+        0 4px 12px rgba(0, 0, 0, 0.45);
 }
+
+.backBtn:hover,
+.playBtn:hover,
+.theme-toggle:hover,
+select:hover,
+input:hover {
+    background-color: color-mix(in srgb, var(--box), var(--text) 5%);
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.05),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.4),
+        0 4px 10px rgba(0, 0, 0, 0.35),
+        0 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+
+.backBtn:active,
+.playBtn:active,
+.theme-toggle:active,
+select:active,
+input:active {
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.04),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.5),
+        0 1px 5px rgba(0, 0, 0, 0.4),
+        0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+
+
 
 .backBtn:active,
 .playBtn:active {
@@ -536,44 +568,66 @@ body {
     margin-bottom: 20px;
 }
 
-/* square, centered, compact */
 .region {
     aspect-ratio: 1 / 1;
-    padding: 5px;
+    padding: 8px;
+    border: 3px solid transparent;
+    border-radius: 12px;
+    box-sizing: border-box;
     display: flex;
-    /* was grid */
     align-items: center;
-    /* vertical center */
     justify-content: center;
-    /* horizontal center */
-    text-align: center;
-    line-height: 1;
     font-size: 20px;
     font-weight: 600;
-    /* matches your default non-active weight */
-    border-radius: 12px;
-    /* slightly smaller radius */
-    overflow: hidden;
-    /* clip long labels */
-    background: var(--bg);
-    border: 1px solid var(--border-weak);
     color: var(--text);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-    transition: background 150ms ease, box-shadow 150ms ease, transform 150ms ease;
-    /* text-shadow: 0px 0px 5px black; */
-    /* 2px wide blue stroke */
+    background: var(--box);
+    transition: background-color 120ms linear,
+        color 120ms linear,
+        border-color 120ms linear;
+}
+
+/* --- Region Button Shadow Effects (safe + jitter-free) --- */
+
+.region {
+    /* Add tactile depth */
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.06),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.4),
+        0 2px 4px rgba(0, 0, 0, 0.35),
+        0 4px 12px rgba(0, 0, 0, 0.45);
 }
 
 .region:hover {
-    background-color: color-mix(in srgb, var(--box), #fff 6%);
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
-    transform: translateY(-2px);
+    /* Slight "lift" effect WITHOUT moving the element */
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.06),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.35),
+        0 3px 6px rgba(0, 0, 0, 0.35),
+        0 6px 18px rgba(0, 0, 0, 0.4);
 }
 
-.region.active {
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
-    transform: translateY(-2px);
+.region:active {
+    /* Pressed-in effect */
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.04),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.5),
+        0 1px 2px rgba(0, 0, 0, 0.4),
+        0 2px 6px rgba(0, 0, 0, 0.35);
 }
+
+
+.region:hover {
+    background-color: color-mix(in srgb, var(--box), var(--text) 12%);
+}
+
+
+
+.region.active {
+    background-color: var(--box-img);
+    border-color: currentColor;
+    /* or r.color from JS */
+}
+
 
 .region .name {
     display: flex;
@@ -764,20 +818,15 @@ body {
     width: 42px;
     height: 42px;
     border-radius: 999px;
-    border: 1px solid var(--border-mid);
-    background: var(--box);
     color: var(--text) !important;
     /* forces visible icon color */
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     font-size: 22px;
     /* icon size */
     line-height: 1;
 }
 
-.theme-toggle:hover {
-    background: color-mix(in srgb, var(--box), #fff 6%);
-}
+
 
 /* Ensure FA icons respect color */
 .theme-toggle svg {
